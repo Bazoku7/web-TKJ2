@@ -1,8 +1,8 @@
 // toggle class active
 const navbarNav = document.querySelector('.navbar-nav');
-// ketika hamburger menu di klik 
+// ketika hamburger menu di klik
  document.querySelector('#hamburger-menu').onclick = () => {
-   navbarNav.classList.toggle('active');  
+   navbarNav.classList.toggle('active');
  };
 
 // klik di luar sidebar untuk menghilangkan navbar
@@ -14,25 +14,39 @@ const navbarNav = document.querySelector('.navbar-nav');
     }
     });
 
-// handle form submission
-formAnggota1.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const nama = document.querySelector('#nama').value;
-    const deskripsi = document.querySelector('#deskripsi').value;
-    
-    if (nama) {
-        anggotaTitle.textContent = nama;
-    }
-    if (deskripsi) {
-        let descP = anggotaCard.querySelector('.anggota-description');
-        if (!descP) {
-            descP = document.createElement('p');
-            descP.className = 'anggota-description';
-            anggotaCard.appendChild(descP);
+// Gallery Slider Functionality
+let currentSlide = 0;
+const slides = document.querySelectorAll('.galeri-slide');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        slide.classList.remove('active', 'prev', 'next');
+        if (i === index) {
+            slide.classList.add('active');
+        } else if (i === (index - 1 + totalSlides) % totalSlides) {
+            slide.classList.add('prev');
+        } else if (i === (index + 1) % totalSlides) {
+            slide.classList.add('next');
         }
-        descP.textContent = deskripsi;
-    }
-    
-    popupAnggota1.style.display = 'none';
-    formAnggota1.reset();
-});
+    });
+}
+
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    showSlide(currentSlide);
+}
+
+function prevSlide() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    showSlide(currentSlide);
+}
+
+// Event listeners for navigation buttons
+document.getElementById('galeri-next').addEventListener('click', nextSlide);
+document.getElementById('galeri-prev').addEventListener('click', prevSlide);
+
+// Initialize slider
+showSlide(currentSlide);
+
+

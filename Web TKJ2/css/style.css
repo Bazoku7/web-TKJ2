@@ -15,7 +15,7 @@ body{
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg);
     color: rgb(221, 223, 224);
-    min-height: 4000px;
+    /* min-height: 4000px;  */
     overflow-x: hidden;
 }
 
@@ -226,9 +226,9 @@ background:linear-gradient(0deg,rgba(5, 1, 1, 0.3), rgba(255, 255, 255, 0)25%);
 
 /* galeri section */
 .galeri {
-    padding: 10rem 0 0;
+    padding: 10rem 0 1.4rem;
     text-align: center;
-    height: auto;
+    min-height: 70vh;
     background-color:rgb(13, 28, 95);
 }
 
@@ -236,6 +236,7 @@ background:linear-gradient(0deg,rgba(5, 1, 1, 0.3), rgba(255, 255, 255, 0)25%);
     font-size: 3rem;
     text-align: center;
     margin-bottom: 3rem;
+    margin-top: -5rem;
     color: rgb(27, 125, 206);
     padding-left: 7%;
     padding-right: 7%;
@@ -248,27 +249,84 @@ background:linear-gradient(0deg,rgba(5, 1, 1, 0.3), rgba(255, 255, 255, 0)25%);
 .galeri p {
     text-align: center;
     margin: auto;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
     padding-left: 7%;
     padding-right: 7%;
 }
 
-.galeri-grid {
+.galeri-container {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
-    gap: 1rem;
     padding-left: 7%;
     padding-right: 7%;
+    position: relative;
 }
 
-.galeri-item {
+.galeri-slider {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+}
+
+.galeri-slide {
+    display: none;
+    width: 100%;
     text-align: center;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.galeri-item img {
-    width: 150px;
+.galeri-slide.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.galeri-slide.prev {
+    transform: translateX(-100%);
+}
+
+.galeri-slide.next {
+    transform: translateX(100%);
+}
+
+.galeri-slide img {
+    width: 100%;
+    max-width: 500px;
     height: auto;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.galeri-nav {
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    transition: background 0.3s ease;
+}
+
+.galeri-nav:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+.galeri-prev {
+    left: 10px;
+}
+
+.galeri-next {
+    right: 10px;
 }
 
 /* credit section */
@@ -298,9 +356,10 @@ background:linear-gradient(0deg,rgba(5, 1, 1, 0.3), rgba(255, 255, 255, 0)25%);
 
 .credit p {
     color: white;
-    font-size: 4rem;
+    font-size: 2rem;
     padding-left: 7%;
     padding-right: 7%;
+    margin-top: 1rem;
 }
 
 .credit h2 {
@@ -309,6 +368,7 @@ background:linear-gradient(0deg,rgba(5, 1, 1, 0.3), rgba(255, 255, 255, 0)25%);
     margin-bottom: 3rem;
     padding-left: 7%;
     padding-right: 7%;
+    color: white;
 }
 
 .credit h2 span {
@@ -395,6 +455,10 @@ footer .links a {
     padding: 0.7rem 1rem;
 }
 
+footer .links p {
+    margin-top: 2rem;
+}
+
 footer .credit {
     font-size: 0.8rem;
 }
@@ -456,6 +520,22 @@ html {
 @media (max-width: 450px) {
     html {
         font-size: 55%;
+    }
+
+    .anggota-card-img {
+        width: 60px;
+    }
+
+    .credit {
+        padding: 5rem 0 1.4rem;
+    }
+
+    .credit h2 {
+        font-size: 6rem;
+    }
+
+    .credit p {
+        font-size: 4rem;
     }
 }
 }
