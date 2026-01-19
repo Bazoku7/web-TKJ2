@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Circular Wave & Full Zoom with Text</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f4f4;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Container utama untuk tombol dan teks */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; /* Jarak antara tombol dan teks */
+            transition: opacity 0.5s ease;
+        }
+
+        .btn-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-zoom {
+            width: 80px;
+            height: 80px;
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            position: relative;
+            z-index: 10;
+            transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+        }
+
+        /* HOVER: Menonjol & Gelap */
+        .btn-zoom:hover {
+            transform: scale(1.05);
+            filter: brightness(0.8);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* EFEK GELOMBANG (Looping 10px) */
+        .btn-wrapper::before {
+            content: "";
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: rgba(0, 123, 255, 0.5);
+            border-radius: 50%;
+            z-index: 1;
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+
+        /* TEKS DI BAWAH TOMBOL */
+        .quote-text {
+            color: #555;
+            font-size: 16px;
+            font-style: italic;
+            font-weight: 500;
+            text-align: center;
+            transition: opacity 0.3s ease;
+        }
+
+        /* LINGKARAN ZOOM SAAT DIKLIK */
+        .btn-zoom::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background-color: #007bff;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Trigger Animasi Zoom */
+        .btn-zoom.active-anim::after {
+            animation: zoom-burst 1.5s forwards cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes zoom-burst {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            100% { transform: translate(-50%, -50%) scale(400); }
+        }
+
+        /* State saat diklik */
+        .hide-pulse::before { display: none !important; }
+        .fade-out-text { opacity: 0; }
+
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="btn-wrapper" id="wrapper">
+            <button id="btn" class="btn-zoom">!</button>
+        </div>
+        <div id="text" class="quote-text">Don't Judge A Book By It's Cover</div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('btn');
+        const wrapper = document.getElementById('wrapper');
+        const text = document.getElementById('text');
+        
+        btn.addEventListener('click', function() {
+            // Sembunyikan gelombang dan teks
+            wrapper.classList.add('hide-pulse');
+            text.classList.add('fade-out-text');
+            
+            // Jalankan animasi burst biru
+            this.classList.add('active-anim');
+
+            // Pindah halaman
+            setTimeout(() => {
+                window.location.href = 'Web TKJ2/index.html';
+            }, 950); 
+        });
+    </script>
+
+</body>
+</html>
