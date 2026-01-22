@@ -212,7 +212,7 @@ background:linear-gradient(0deg,rgba(5, 1, 1, 0.3), rgba(255, 255, 255, 0)25%);
 }
 
 .anggota-card-img {
-    width: 100px;
+    width: 60px;
     height: auto;
     border-radius: 5px;
 }
@@ -300,16 +300,16 @@ background:linear-gradient(0deg,rgba(5, 1, 1, 0.3), rgba(255, 255, 255, 0)25%);
     max-width: 500px;
     height: auto;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(15, 15, 15, 0.2);
 }
 
 .galeri-nav {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(241, 241, 241, 0.8);
     border: none;
-    font-size: 2rem;
+    font-size: 1rem;
     cursor: pointer;
     padding: 1rem;
-    border-radius: 50%;
+    border-radius: 20vh;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -482,6 +482,7 @@ html {
 
 #hamburger-menu {
     display: inline-block;
+    font-size: 1.5rem;
 }
 
 .navbar .navbar-nav {
